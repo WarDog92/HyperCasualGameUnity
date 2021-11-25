@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Resource
+  - Batut
   layers:
   - Default
   - TransparentFX

@@ -14,13 +14,11 @@ public class BatuteSpawn : MonoBehaviour
     int spawnCount;
     public Dropdown dropdown;
     public static bool FirstInstance = true;
-    public int SomeValue = 100;
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject gameObject = obj;
-        gameObject.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
         int index = dropdown.value;
         switch (index)
         {
@@ -37,19 +35,20 @@ public class BatuteSpawn : MonoBehaviour
                 break;
 
             case 3:
-                spawnCount = 4;
+                spawnCount = 3; //так как один батут уже стоит по дефолту
                 break;
         }
 
-        RandX = Random.Range(-25f, 25f);
-        RandZ = Random.Range(-25f, 25f);
         if (spawnCount > 0)
         {
-            
-            SomeValue--;
-            var randomPosition = new Vector3(RandX, transform.position.y, RandZ);
-            var clone = Instantiate(gameObject, randomPosition, Quaternion.identity) as GameObject;
-            spawnCount--;
+            while(spawnCount > 0){
+                RandX = Random.Range(-25f, 25f);
+                RandZ = Random.Range(-25f, 25f);
+                var randomPosition = new Vector3(RandX, transform.position.y, RandZ);
+                var clone = Instantiate(gameObject, randomPosition, Quaternion.identity) as GameObject;
+                clone.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
+                spawnCount--;
+            }
         }
 
 

@@ -30,7 +30,7 @@ public class DestroyObject : MonoBehaviour
             }
 
         }
-        if (other.gameObject.name == "Batut" && counter == 3)
+        if ((other.gameObject.name == "Batut" || other.gameObject.name == "Batut(Clone)") && counter == 3)
         {
             counter = 0;
             res_bar.texture = myTextures[counter];
