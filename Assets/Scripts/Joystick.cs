@@ -30,7 +30,6 @@ public class Joystick : MonoBehaviour {
 			
 			knob.position = pos;
 			center.position = pos;
-			move.anim.Stop("stay");
 		}
 		else if(Input.GetMouseButton(0)){
 			knob.position = pos;
@@ -42,12 +41,10 @@ public class Joystick : MonoBehaviour {
 			}
 			
 			direction = (knob.position - center.position).normalized;
-			move.anim.Play("walk");
 		}
 		else if(Input.GetMouseButtonUp(0)){
 			ShowHide(false);
 			direction = Vector2.zero;
-			move.anim.Stop("walk");
 		}
 	}
 	

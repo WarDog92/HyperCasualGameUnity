@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
-	
+public class PlayerController : MonoBehaviour
+{
+
     public Joystick joystick;
     [SerializeField]
     private CharacterController controller;
 
-    private Vector3 moveDirection;
+    public Vector3 moveVector;
     [SerializeField]
     private float speed = 0;
     [SerializeField]
@@ -31,77 +32,128 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float currentDodgeTime = 1f;
 
-    public Animation anim;
+    private Animator anim;
+
+    private bool lockDash = false;
+    private bool lockDodge = false;
+    private bool lockRotate = false;
+    [SerializeField]
+    private float cooldownDash = 0;
+    [SerializeField]
+    private float cooldownDodge = 0;
+    [SerializeField]
+    private float heightForFalling = -10;
 
     private void Start()
     {
-        anim = GetComponent<Animation>();
+        anim = GetComponent<Animator>();
     }
 
-    void Update(){
-        Vector2 direction = joystick.direction;
-
-        if (direction == Vector2.zero) anim.Play("stay");
-
-        if (controller.isGrounded){
-            moveDirection = new Vector3(direction.x, 0, direction.y);
-/*            anim.PlayQueued("stay", QueueMode.CompleteOthers);*/
-
-            Quaternion targetRotation = moveDirection != Vector3.zero ? Quaternion.LookRotation(moveDirection) : transform.rotation;
-			transform.rotation = targetRotation;
+    void Update()
+    {
+        if (moveVector.x != 0 || moveVector.z != 0)
+        {
+            anim.SetBool("walk", true);
         }
-
-        moveDirection.y = moveDirection.y - (gravity * Time.deltaTime);
-        controller.Move(moveDirection * speed * Time.deltaTime);
-
+        else
+        {
+            anim.SetBool("walk", false);
+        }
+        move();
         dash();
         dodge();
 
     }
-    void dash()
+    private void move()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        Vector2 direction = joystick.direction;
+        if (controller.isGrounded)
         {
-            currentDashTime = 0.0f;
-            speed = 0f;
-            dashVector = new Vector3(moveDirection.x, 0, moveDirection.z);
-            if (dashVector == Vector3.zero)
+            moveVector = new Vector3(direction.x, 0, direction.y);
+            if (!lockRotate)
             {
-                dashVector = gameObject.transform.forward;
+                Quaternion targetRotation = moveVector != Vector3.zero ? Quaternion.LookRotation(moveVector) : transform.rotation;
+                transform.rotation = targetRotation;
             }
         }
-        if (currentDashTime < maxDashTime)
+        else if (!controller.isGrounded)
         {
-            currentDashTime += Time.deltaTime;
-            controller.Move(dashVector * dashSpeed * Time.deltaTime);
+            moveVector.y = moveVector.y - (gravity * Time.deltaTime);
+            if (moveVector.y < heightForFalling) anim.SetTrigger("fall");
         }
-        if (currentDashTime >= maxDashTime)
+
+        controller.Move(moveVector * speed * Time.deltaTime);
+    }
+
+    void dash()
+    {
+        if (!(currentDodgeTime < maxDodgeTime))
         {
-            speed = 30f;
+            if (Input.GetKeyDown(KeyCode.F) && !lockDash)
+            {
+                lockDash = true;
+                lockRotate = true;
+                Invoke("Lock_dash", cooldownDash);
+                currentDashTime = 0.0f;
+                anim.SetTrigger("dash");
+                speed = 0f;
+                dashVector = new Vector3(moveVector.x, 0, moveVector.z);
+                if (dashVector == Vector3.zero)
+                {
+                    dashVector = gameObject.transform.forward;
+                }
+            }
+            if (currentDashTime < maxDashTime)
+            {
+                currentDashTime += Time.deltaTime;
+                controller.Move(dashVector * dashSpeed * Time.deltaTime);
+            }
+            if (currentDashTime >= maxDashTime)
+            {
+                speed = 30f;
+                lockRotate = false;
+                dashVector = new Vector3(0, 0, 0);
+            }
         }
     }
 
     void dodge()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (!(currentDashTime < maxDashTime))
         {
-            currentDodgeTime = 0.0f;
-            speed = 0f;
-            dodgeVector = new Vector3(moveDirection.x, 0, moveDirection.z);
-            if (dodgeVector == Vector3.zero)
+            if (Input.GetKeyDown(KeyCode.G) && !lockDodge)
             {
-                dodgeVector = gameObject.transform.forward;
+                lockDodge = true;
+                lockRotate = true;
+                Invoke("Lock_dodge", cooldownDodge);
+                currentDodgeTime = 0.0f;
+                anim.SetTrigger("dodge");
+                speed = 0f;
+                dodgeVector = new Vector3(moveVector.x, 0, moveVector.z);
+                if (dodgeVector == Vector3.zero)
+                {
+                    dodgeVector = gameObject.transform.forward;
+                }
+            }
+            if (currentDodgeTime < maxDodgeTime)
+            {
+                currentDodgeTime += Time.deltaTime;
+                controller.Move(dodgeVector * dodgeSpeed * Time.deltaTime);
+            }
+            else if (currentDodgeTime >= maxDodgeTime)
+            {
+                speed = 30f;
+                lockRotate = false;
+                dodgeVector = new Vector3(0, 0, 0);
             }
         }
-        if (currentDodgeTime < maxDodgeTime)
-        {
-            currentDodgeTime += Time.deltaTime;
-            controller.Move(dodgeVector * dodgeSpeed * Time.deltaTime);
-        }
-        else if (currentDodgeTime >= maxDodgeTime)
-        {
-            speed = 30f;
-        }
     }
-
+    void Lock_dash()
+    {
+        lockDash = false;
+    }
+    void Lock_dodge()
+    {
+        lockDodge = false;
+    }
 }
