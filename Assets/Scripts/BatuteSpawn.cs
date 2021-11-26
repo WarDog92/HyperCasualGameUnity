@@ -23,15 +23,15 @@ public class BatuteSpawn : MonoBehaviour
         switch (index)
         {
             case 0:
-                spawnCount = 1;
+                spawnCount = 0;
                 break;
 
             case 1:
-                spawnCount = 2;
+                spawnCount = 1;
                 break;
 
             case 2:
-                spawnCount = 3;
+                spawnCount = 2;
                 break;
 
             case 3:
