@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Resource
   - Batut
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
+  - Player
+  - InDodge
+  - Ground
   - 
   - 
   - 

@@ -8,41 +8,42 @@ public class PlayerController : MonoBehaviour
 
     public Joystick joystick;
     [SerializeField]
-    private CharacterController controller;
+    private Rigidbody rb;
+
+    [SerializeField]
+    private bool _isGrounded;
 
     public Vector3 moveVector;
     [SerializeField]
     private float speed = 0;
-    [SerializeField]
-    private float gravity = 0;
 
     private Vector3 dashVector;
     [SerializeField]
     private float dashSpeed = 100f;
     [SerializeField]
     private float maxDashTime = 1f;
-    [SerializeField]
     private float currentDashTime = 1f;
+    [SerializeField]
+    private float cooldownDash = 0;
 
     private Vector3 dodgeVector;
     [SerializeField]
     private float dodgeSpeed = 100f;
     [SerializeField]
     private float maxDodgeTime = 1f;
-    [SerializeField]
     private float currentDodgeTime = 1f;
+    [SerializeField]
+    private float cooldownDodge = 0;
 
     private Animator anim;
 
+    private bool lockMove = false;
     private bool lockDash = false;
     private bool lockDodge = false;
     private bool lockRotate = false;
+
     [SerializeField]
-    private float cooldownDash = 0;
-    [SerializeField]
-    private float cooldownDodge = 0;
-    [SerializeField]
-    private float heightForFalling = -10;
+    private float pushPower = 1.0f;
 
     private void Start()
     {
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Check_kick();
         if (moveVector.x != 0 || moveVector.z != 0)
         {
             anim.SetBool("walk", true);
@@ -62,12 +64,11 @@ public class PlayerController : MonoBehaviour
         move();
         dash();
         dodge();
-
     }
     private void move()
     {
         Vector2 direction = joystick.direction;
-        if (controller.isGrounded)
+        if (_isGrounded && !lockMove)
         {
             moveVector = new Vector3(direction.x, 0, direction.y);
             if (!lockRotate)
@@ -75,14 +76,15 @@ public class PlayerController : MonoBehaviour
                 Quaternion targetRotation = moveVector != Vector3.zero ? Quaternion.LookRotation(moveVector) : transform.rotation;
                 transform.rotation = targetRotation;
             }
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.velocity = new Vector3(moveVector.x * speed, rb.velocity.y, moveVector.z * speed);
+
         }
-        else if (!controller.isGrounded)
+        else if (!_isGrounded)
         {
-            moveVector.y = moveVector.y - (gravity * Time.deltaTime);
-            if (moveVector.y < heightForFalling) anim.SetTrigger("fall");
+            anim.SetTrigger("fall");
         }
 
-        controller.Move(moveVector * speed * Time.deltaTime);
     }
 
     void dash()
@@ -96,7 +98,7 @@ public class PlayerController : MonoBehaviour
                 Invoke("Lock_dash", cooldownDash);
                 currentDashTime = 0.0f;
                 anim.SetTrigger("dash");
-                speed = 0f;
+                lockMove = true;
                 dashVector = new Vector3(moveVector.x, 0, moveVector.z);
                 if (dashVector == Vector3.zero)
                 {
@@ -106,11 +108,11 @@ public class PlayerController : MonoBehaviour
             if (currentDashTime < maxDashTime)
             {
                 currentDashTime += Time.deltaTime;
-                controller.Move(dashVector * dashSpeed * Time.deltaTime);
+                rb.velocity = dashVector * dashSpeed;
             }
             if (currentDashTime >= maxDashTime)
             {
-                speed = 30f;
+                lockMove = false;
                 lockRotate = false;
                 dashVector = new Vector3(0, 0, 0);
             }
@@ -127,8 +129,9 @@ public class PlayerController : MonoBehaviour
                 lockRotate = true;
                 Invoke("Lock_dodge", cooldownDodge);
                 currentDodgeTime = 0.0f;
+                gameObject.layer = 10;
                 anim.SetTrigger("dodge");
-                speed = 0f;
+                lockMove = true;
                 dodgeVector = new Vector3(moveVector.x, 0, moveVector.z);
                 if (dodgeVector == Vector3.zero)
                 {
@@ -138,11 +141,12 @@ public class PlayerController : MonoBehaviour
             if (currentDodgeTime < maxDodgeTime)
             {
                 currentDodgeTime += Time.deltaTime;
-                controller.Move(dodgeVector * dodgeSpeed * Time.deltaTime);
+                rb.velocity = dodgeVector * dodgeSpeed;
             }
             else if (currentDodgeTime >= maxDodgeTime)
             {
-                speed = 30f;
+                gameObject.layer = 0;
+                lockMove = false;
                 lockRotate = false;
                 dodgeVector = new Vector3(0, 0, 0);
             }
@@ -156,4 +160,45 @@ public class PlayerController : MonoBehaviour
     {
         lockDodge = false;
     }
+
+    void Check_kick()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("beingKick") || anim.GetCurrentAnimatorStateInfo(0).IsName("fallAfterKick"))
+        {
+            lockMove = true;
+            lockDash = true;
+            lockDodge = true;
+        }
+        else
+        {
+            lockMove = false;
+            lockDash = false;
+            lockDodge = false;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            _isGrounded = true;
+        }
+        if (collision.gameObject.tag == "Player")
+        {
+            if (dashVector != Vector3.zero)
+            {
+                collision.rigidbody.AddForce(dashVector * pushPower * 10, ForceMode.Impulse);
+                collision.gameObject.GetComponent<Animator>().SetTrigger("Kick");
+            }
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            _isGrounded = false;
+        }
+    }
+
 }
