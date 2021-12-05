@@ -45,8 +45,8 @@ public class RandomSpawner : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            RandX = Random.Range(-19f, 19f);
-            RandZ = Random.Range(-19f, 19f);
+            RandX = Random.Range(-45f, 25f);
+            RandZ = Random.Range(-55f, 30f);
             whereToSpawn = new Vector3(RandX, transform.position.y, RandZ);
             Instantiate(obj, whereToSpawn, Quaternion.identity);
         }
