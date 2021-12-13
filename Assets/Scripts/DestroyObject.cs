@@ -30,6 +30,7 @@ public class DestroyObject : MonoBehaviour
             }
 
         }
+
         if ((other.gameObject.name == "Batut" || other.gameObject.name == "Batut(Clone)") && counter == 3)
         {
             counter = 0;

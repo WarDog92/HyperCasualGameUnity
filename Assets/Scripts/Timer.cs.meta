@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 4de2f8df1c9615a448dbb85ca6eb3545
+guid: 35201ecd38de62d49a951a33a20819e3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - res_bar: {instanceID: 0}
-  - batut: {fileID: 919132149155446097, guid: da48e637628aa7f4ea67d7f53abf3f34, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -18,7 +18,7 @@ public class BatuteSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject gameObject = obj;
+        GameObject batut = obj;
         int index = dropdown.value;
         switch (index)
         {
@@ -45,7 +45,8 @@ public class BatuteSpawn : MonoBehaviour
                 //RandX = Random.Range(-25f, 25f);
                 RandZ = Random.Range(-25f, 25f);
                 var randomPosition = new Vector3(33, transform.position.y, 5 * (spawnCount * 5) - 54);//RandZ);
-                var clone = Instantiate(gameObject, randomPosition, Quaternion.identity) as GameObject;
+                var clone = Instantiate(batut, randomPosition, Quaternion.identity) as GameObject;
+                clone.name = "Batut";
                 clone.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
                 spawnCount--;
             }
