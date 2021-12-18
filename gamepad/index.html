@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gamepad</title>
+    <link rel="stylesheet" type="text/css" href="css/stdyl.css">
+    <!--script type="text/javascript" src="/scripts/drag.js"></script-->
+</head>
+<body>
+    <h1>Gamepad demo</h1>
+    <main>
+        <div class="left" id="circle"><!--onmousedown="c_bc()"-->
+            <div class="stick" id="s_stick"><!--onmouseover="alert('yo!')"-->
+
+            </div>
+        </div>
+
+        <div class="right">
+        </div>
+    </main>
+    <script>
+        var mousePosition;
+        var offset = [0,0];
+        var div;
+        var isDown = false;
+
+        div = document.getElementById("s_stick");
+        position = div.getBoundingClientRect();
+
+        div.addEventListener('mousedown', function(e) {
+            console.log("TRUE");
+            isDown = true;
+            offset = [
+                div.offsetLeft - e.clientX,
+                div.offsetTop - e.clientY
+            ];
+        }, true);
+
+        document.addEventListener('mouseup', function() {
+            div.style.left = position.x +'px';
+            div.style.top = position.y +'px';
+
+            isDown = false;
+        }, true);
+
+        document.addEventListener('mousemove', function(event) {
+            event.preventDefault();
+            if (isDown) {
+                mousePosition = {
+
+                    x : event.clientX,
+                    y : event.clientY
+
+                };
+                div.style.left = (mousePosition.x + offset[0]) + 'px';
+                div.style.top  = (mousePosition.y + offset[1]) + 'px';
+                //console.log(div.style.left - p_x, div.style.top - p_y);
+                var ix = div.style.left.match(/(\d+)/);
+                var iy = div.style.top.match(/(\d+)/);
+                //console.log((ix[0] - position.x) * 1/70, " ", (iy[0] - position.y) * -1/70);
+                console.log(Math.sin((ix[0] - position.x) * 1/70), "=", div.style.left, " ", Math.sin((iy[0] - position.y) * -1/70), div.style.top);
+                let sin1 = Math.sin((ix[0] - position.x) * 1/70);
+                let sin2 = Math.sin((iy[0] - position.y) * -1/70);
+                if(sin1>0.8){
+                    div.style.left = "200px";
+                }
+                if(sin1 < (-0.8)){
+                    div.style.left = "58px";
+                }
+                if(sin2>0.8){
+                    div.style.top = "96px";
+                }
+                if(sin2 < (-0.8)){
+                    div.style.top = "240px";
+                }
+            }
+        }, true);
+    </script>
+</body>
+
+</html>

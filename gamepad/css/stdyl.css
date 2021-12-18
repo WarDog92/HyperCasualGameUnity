@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+#test{
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    height: 500px;
+    width: 500px;
+
+    background-color: black;
+}
+
+main{
+    height: 300px;
+    width: 600px;
+    background-color: #42A5F5;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+}
+
+main .left {
+    margin: 10%;
+    height: 150px;
+    width: 150px;
+    background-color: aquamarine;
+    border-radius: 25%;
+}
+
+.stick{
+    position: absolute;
+
+    top: 165px;
+    left: 130px;
+
+    height: 50px;
+    width: 50px;
+
+    background-color: blue;
+    border-radius: 50%;
+}
