@@ -26,6 +26,8 @@ public class Timer : MonoBehaviour
         {
             timerStart = 60;
             Destroy(GameObject.Find("Batut"));
+            gameObject.SendMessage("Finnish");
+            GameObject.Find("Player").GetComponent("DestroyObject").SendMessage("timesOver");
         }
     }
 

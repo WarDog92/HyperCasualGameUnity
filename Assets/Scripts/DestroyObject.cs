@@ -36,7 +36,19 @@ public class DestroyObject : MonoBehaviour
             counter = 0;
             res_bar.texture = myTextures[counter];
         }
+
     }
     void Update(){
+    }
+    void timesOver()
+    {
+        StartCoroutine(Countdown());
+    }
+
+    IEnumerator Countdown()
+    {
+        yield return new WaitForSeconds(0.4f);
+        counter = 0;
+        res_bar.texture = myTextures[counter];
     }
 }
