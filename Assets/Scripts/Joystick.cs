@@ -35,12 +35,14 @@ public class Joystick : MonoBehaviour {
 			knob.position = pos;
 			knob.position = center.position + Vector3.ClampMagnitude(knob.position - center.position, center.sizeDelta.x * range);
 
-			if (knob.position != Input.mousePosition && !fixedJoystick){
+/*			if (knob.position != Input.mousePosition && !fixedJoystick)
+			{
 				Vector3 outsideBoundsVector = Input.mousePosition - knob.position;
 				center.position += outsideBoundsVector;
-			}
-			
+			}*/
+
 			direction = (knob.position - center.position).normalized;
+			Debug.Log(direction);
 		}
 		else if(Input.GetMouseButtonUp(0)){
 			ShowHide(false);
