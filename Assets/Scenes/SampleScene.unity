@@ -956,6 +956,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410315352}
   m_CullTransparentMesh: 1
+--- !u!1 &423398423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 83fef30e5ac23864bb5b45ff18df78e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1032124266}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &423398424
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423398423}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.021744132, y: 0.021758778, z: 0.22872901}
+  m_Center: {x: -0.000016788019, y: 0.000014664136, z: -0.1043645}
 --- !u!1 &542393028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,7 +1904,7 @@ PrefabInstance:
         type: 3}
       propertyPath: batut
       value: 
-      objectReference: {fileID: 10519656}
+      objectReference: {fileID: 423398423}
     - target: {fileID: 6739510350065756926, guid: 456254ce3fb01624c8d812edec523d51,
         type: 3}
       propertyPath: res_bar
