@@ -1568,7 +1568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83685589c4b09ec4bb1b64f9551248ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 10519656}
+  obj: {fileID: 423398423}
   dropdown: {fileID: 542393030}
 --- !u!1 &705507993
 GameObject:
@@ -1820,6 +1820,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 463515913173430271, guid: 456254ce3fb01624c8d812edec523d51,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4972836879064037750, guid: 456254ce3fb01624c8d812edec523d51,
         type: 3}
       propertyPath: m_RootOrder
@@ -1910,6 +1915,11 @@ PrefabInstance:
       propertyPath: res_bar
       value: 
       objectReference: {fileID: 177013704}
+    - target: {fileID: 7244708887860501713, guid: 456254ce3fb01624c8d812edec523d51,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 456254ce3fb01624c8d812edec523d51, type: 3}
 --- !u!850595691 &755820303
@@ -4871,7 +4881,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 83fef30e5ac23864bb5b45ff18df78e0,
         type: 3}
       propertyPath: m_Name
-      value: Butut
+      value: Batut
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83fef30e5ac23864bb5b45ff18df78e0, type: 3}
@@ -7781,7 +7791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35201ecd38de62d49a951a33a20819e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerStart: 60
+  timerStart: 1000
   timerText: {fileID: 63638704}
 --- !u!114 &2084266314
 MonoBehaviour:
