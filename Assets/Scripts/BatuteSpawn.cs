@@ -44,10 +44,10 @@ public class BatuteSpawn : MonoBehaviour
             while(spawnCount > 0){
                 //RandX = Random.Range(-25f, 25f);
                 RandZ = Random.Range(-25f, 25f);
-                var randomPosition = new Vector3(33, transform.position.y, 5 * (spawnCount * 5) - 54);//RandZ);
+                var randomPosition = new Vector3(30, transform.position.y, 5 * (spawnCount * 5) - 54);//RandZ);
                 var clone = Instantiate(batut, randomPosition, Quaternion.identity) as GameObject;
                 clone.name = "Batut";
-                clone.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
+                clone.transform.Rotate(-105.0f, 0.0f, 90.0f, Space.Self);
                 spawnCount--;
             }
         }
