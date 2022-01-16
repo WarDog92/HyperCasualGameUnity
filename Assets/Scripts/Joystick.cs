@@ -42,7 +42,6 @@ public class Joystick : MonoBehaviour {
 			}*/
 
 			direction = (knob.position - center.position).normalized;
-			Debug.Log(direction);
 		}
 		else if(Input.GetMouseButtonUp(0)){
 			ShowHide(false);
