@@ -14,16 +14,27 @@ public class DestroyObject : MonoBehaviour
     private RawImage batut_bar;
     [SerializeField]
     private GameObject batut;
+    [SerializeField]
+    private GameObject res_bar_g;
+
+    private bool isBatutFull = false;
+
+    private Animator anim;
+
+    public PlayerController cont;
 
 
     public Texture[] myTextures = new Texture[4];
     public Texture[] myBatutTextures = new Texture[4];
 
-    void Strat(){
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
     }
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Resource")
+        if (other.gameObject.tag == "Resource" && !isBatutFull)
         {
             if (counter < 3)
             {
@@ -38,10 +49,21 @@ public class DestroyObject : MonoBehaviour
         {
             counter = 0;
             res_bar.texture = myTextures[counter];
-            if(batut_counter < 3) 
+            if (batut_counter < 2)
+            {
                 batut_counter++;
-                batut_bar.texture = myBatutTextures[batut_counter]; 
+                batut_bar.texture = myBatutTextures[batut_counter];
                 Debug.Log(batut_counter);
+            }
+            else 
+            {
+                res_bar_g.SetActive(false);
+                cont.moveVector = new Vector3(0,0,0);
+                batut_counter++;
+                batut_bar.texture = myBatutTextures[batut_counter];
+                isBatutFull = true;
+                anim.SetTrigger("Jump");
+            }
         }
 
     }

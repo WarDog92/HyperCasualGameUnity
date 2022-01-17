@@ -1826,14 +1826,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.03773582, g: 0.03396224, b: 0.03396224, a: 0.05490196}
+  m_Color: {r: 0.8666667, g: 0.8666667, b: 0.8666667, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7a8a62d587f4cfd4fa4d77b25d87e9ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa9ba8a917bf73a42863734a12bd51f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1950,6 +1950,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c138856cd91cee44f81e6aff1dab7d3d, type: 2}
     - target: {fileID: 6739510350065756926, guid: 456254ce3fb01624c8d812edec523d51,
         type: 3}
+      propertyPath: cont
+      value: 
+      objectReference: {fileID: 2037692246}
+    - target: {fileID: 6739510350065756926, guid: 456254ce3fb01624c8d812edec523d51,
+        type: 3}
       propertyPath: batut
       value: 
       objectReference: {fileID: 423398423}
@@ -1963,6 +1968,11 @@ PrefabInstance:
       propertyPath: batut_bar
       value: 
       objectReference: {fileID: 221525471}
+    - target: {fileID: 6739510350065756926, guid: 456254ce3fb01624c8d812edec523d51,
+        type: 3}
+      propertyPath: res_bar_g
+      value: 
+      objectReference: {fileID: 177013702}
     - target: {fileID: 6739510350065756926, guid: 456254ce3fb01624c8d812edec523d51,
         type: 3}
       propertyPath: myBatutTextures.Array.data[0]
@@ -3812,14 +3822,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9433962, g: 0, b: 0, a: 0.047058824}
+  m_Color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aaa7a15b16fe28846b42dc87c9078bc0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb38ef8946e39794d806a279a95c4fd9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5157,6 +5167,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993306175}
   m_CullTransparentMesh: 1
+--- !u!114 &2037692246 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4997769561323555382, guid: 456254ce3fb01624c8d812edec523d51,
+    type: 3}
+  m_PrefabInstance: {fileID: 741448810}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1be5926a88515c44811d22c1aa3cf87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2075470922
 GameObject:
   m_ObjectHideFlags: 0
@@ -5407,6 +5429,8 @@ MonoBehaviour:
   res_bar: {fileID: 177013704}
   batut_bar: {fileID: 0}
   batut: {fileID: 0}
+  res_bar_g: {fileID: 0}
+  cont: {fileID: 0}
   myTextures:
   - {fileID: 2800000, guid: c7798a9bbf971f145b8bb4ec72ef1097, type: 3}
   - {fileID: 2800000, guid: 37f723e3ab8420943b1ccae57a7db00f, type: 3}
