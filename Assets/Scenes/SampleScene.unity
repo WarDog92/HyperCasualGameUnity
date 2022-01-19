@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.32725587, g: 0.28189078, b: 0.41684642, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1636,7 +1636,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0.94509804}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1863,6 +1863,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4794549878135955098, guid: 456254ce3fb01624c8d812edec523d51,
+        type: 3}
+      propertyPath: m_Mass
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4794549878135955099, guid: 456254ce3fb01624c8d812edec523d51,
         type: 3}
       propertyPath: m_Center.x
@@ -1968,6 +1973,11 @@ PrefabInstance:
       propertyPath: batut
       value: 
       objectReference: {fileID: 423398423}
+    - target: {fileID: 6739510350065756926, guid: 456254ce3fb01624c8d812edec523d51,
+        type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 2084266313}
     - target: {fileID: 6739510350065756926, guid: 456254ce3fb01624c8d812edec523d51,
         type: 3}
       propertyPath: res_bar
@@ -2340,7 +2350,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23, y: -163.8244}
+  m_AnchoredPosition: {x: 23, y: -204.8244}
   m_SizeDelta: {x: 586.19, y: 200.5979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &931098694
@@ -2667,6 +2677,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Batut
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83fef30e5ac23864bb5b45ff18df78e0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Batut
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83fef30e5ac23864bb5b45ff18df78e0, type: 3}
 --- !u!1 &1044035969
@@ -2809,7 +2824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.97267, g: 0.85412955, b: 0.990566, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2869,7 +2884,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 364}
-  m_SizeDelta: {x: 586.7568, y: 117.3514}
+  m_SizeDelta: {x: 1200, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069227057
 MonoBehaviour:
@@ -2884,7 +2899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.8490566, g: 0.09131358, b: 0.098580085, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2893,19 +2908,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 48
+    m_FontSize: 86
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 59
+    m_MinSize: 0
+    m_MaxSize: 86
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0420\u044B\u0432\u043E\u043A -  F\n\u0423\u0432\u043E\u0440\u043E\u0442
-    - G"
+  m_Text: "\u041A\u0430\u0437\u0443\u0430\u043B\u044C\u043D\u0430\u044F \u0418\u0433\u0440\u0430"
 --- !u!222 &1069227058
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3198,7 +3212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.002, y: 145}
+  m_AnchoredPosition: {x: 23.002, y: 104}
   m_SizeDelta: {x: 586.1945, y: 187.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1159839919
@@ -5441,6 +5455,7 @@ MonoBehaviour:
   batut: {fileID: 0}
   res_bar_g: {fileID: 0}
   cont: {fileID: 0}
+  timer: {fileID: 0}
   myTextures:
   - {fileID: 2800000, guid: c7798a9bbf971f145b8bb4ec72ef1097, type: 3}
   - {fileID: 2800000, guid: 37f723e3ab8420943b1ccae57a7db00f, type: 3}
@@ -5612,7 +5627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35201ecd38de62d49a951a33a20819e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerStart: 30
+  timerStart: 1000
   timerText: {fileID: 63638704}
 --- !u!114 &2084266314
 MonoBehaviour:

@@ -44,6 +44,7 @@ public class LevelScene : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         NextLevelScene.SetActive(false);
         Time.timeScale = 1f;
+        Destroy(GameObject.Find("Batut"));
         var Resources = GameObject.FindGameObjectsWithTag("Resource");
         for (var i = 0; i < Resources.Length; i++)
             Destroy(Resources[i]);

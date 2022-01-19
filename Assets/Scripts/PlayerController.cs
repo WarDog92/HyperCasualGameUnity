@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 moveVector;
     [SerializeField]
-    private float speed = 0;
+    public float speed = 0;
 
     private Vector3 dashVector;
     [SerializeField]

@@ -23,6 +23,8 @@ public class DestroyObject : MonoBehaviour
 
     public PlayerController cont;
 
+    public Timer timer;
+
 
     public Texture[] myTextures = new Texture[4];
     public Texture[] myBatutTextures = new Texture[4];
@@ -58,7 +60,8 @@ public class DestroyObject : MonoBehaviour
             else 
             {
                 res_bar_g.SetActive(false);
-                cont.moveVector = new Vector3(0,0,0);
+                cont.speed = 0;
+                timer.timerStart = 0;
                 batut_counter++;
                 batut_bar.texture = myBatutTextures[batut_counter];
                 isBatutFull = true;
