@@ -1863,6 +1863,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4794549878135955099, guid: 456254ce3fb01624c8d812edec523d51,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794549878135955099, guid: 456254ce3fb01624c8d812edec523d51,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4972836879064037750, guid: 456254ce3fb01624c8d812edec523d51,
         type: 3}
       propertyPath: m_RootOrder
@@ -5342,7 +5352,7 @@ PrefabInstance:
     - target: {fileID: 4787346629182746545, guid: 5f28c8bd75eb194488ad61b59f61f9e9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4787346629182746545, guid: 5f28c8bd75eb194488ad61b59f61f9e9,
         type: 3}
@@ -5602,7 +5612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35201ecd38de62d49a951a33a20819e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerStart: 1000
+  timerStart: 30
   timerText: {fileID: 63638704}
 --- !u!114 &2084266314
 MonoBehaviour:
