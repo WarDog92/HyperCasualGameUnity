@@ -67,9 +67,10 @@ public class PlayerController : MonoBehaviour
     }
     private void move()
     {
-        Vector2 direction = joystick.direction;
         if (_isGrounded && !lockMove)
         {
+            Vector2 direction = joystick.direction;
+            Debug.Log("Lockfall");
             moveVector = new Vector3(direction.x, 0, direction.y);
             if (!lockRotate)
             {
@@ -80,9 +81,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector3(moveVector.x * speed, rb.velocity.y, moveVector.z * speed);
 
         }
-        else if (!_isGrounded)
+        else if (!_isGrounded )
         {
             anim.SetTrigger("fall");
+            Debug.Log("fall");
         }
 
     }
